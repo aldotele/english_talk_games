@@ -1,19 +1,22 @@
 import os
 
+# OPENING INPUT FILE
+filename = input('enter txt file name: ')
+inf = open(os.path.join('files', filename))
 
-inf = open(os.path.join('files', 'mw1.txt'))
-
-prize = 480000
-print(prize, 'euro')
+prize = int(input('enter starting prize: '))
+print(f"€ {prize}")
 print()
 
 lines = inf.readlines()
 last_lines = lines[-2:]
 options = last_lines[0]
 winning_word = last_lines[1]
-# print(options)
+if winning_word == '\n':
+    print('please do not leave empty lines at the end of the txt file!')
+    quit()
 
-inf = open(os.path.join('files', 'mw1.txt'))
+inf = open(os.path.join('files', filename))
 
 count = 0
 valid_hints = []
@@ -31,7 +34,7 @@ for line in inf:
         # print(options[count])
         print(split_line[int(options[count])])
         valid_hints.append(split_line[int(options[count])])
-        print(prize, ' euro')
+        print(f"€ {prize}")
         print()
 
     count += 1
@@ -40,10 +43,10 @@ print()
 for element in valid_hints:
     print(element)
 print()
-guess = input('what is the word?')
-if guess.upper() == winning_word:
-    print('YOU WON', prize)
-    print(winning_word)
+guess = input('what is the word? ')
+if guess.upper().strip() == winning_word:
+    print(f'YOU WON € {prize}')
+    print(f"the word is {winning_word}")
 else:
     print('YOU LOST')
-    print(winning_word)
+    print(f"the word is {winning_word}")
