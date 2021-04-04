@@ -3,7 +3,7 @@ import os
 
 people = ['Player 1', 'Player 2', 'Player 3', 'Player 4', 'Player 5']
 
-words = open(os.path.join('files', 'tech_expressions'))
+words = open(os.path.join('files', 'etw.txt'))
 words = words.read().splitlines()
 
 count_people = len(people)
