@@ -1,4 +1,6 @@
 import os
+import base64
+
 
 # OPENING INPUT FILE
 filename = input('enter txt file name: ')
@@ -44,6 +46,12 @@ for element in valid_hints:
     print(element)
 print()
 guess = input('what is the word? ')
+
+
+winning_word_bytes = winning_word.encode('ascii')
+decoded_bytes = base64.b64decode(winning_word_bytes)
+winning_word = decoded_bytes.decode('ascii')
+
 if guess.upper().strip() == winning_word:
     print(f'YOU WON € {prize}')
     print(f"the word is {winning_word}")
