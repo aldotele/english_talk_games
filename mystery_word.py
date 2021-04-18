@@ -5,10 +5,19 @@ import time
 
 # asking input file
 filename = input('enter txt file name: ')
-inf = open(os.path.join('files', filename))
+try:
+    inf = open(os.path.join('files', filename))
+except FileNotFoundError:
+    print('input file was not found. Please retry.')
+    quit()
 
 # asking starting prize
-prize = int(input('enter starting prize: '))
+try:
+    prize = int(input('enter starting prize: '))
+except:
+    print('prize is not valid. Please retry.')
+    quit()
+
 print(f"€ {prize}")
 print()
 
@@ -49,7 +58,11 @@ for line in inf:
         print('1 - ', split_line[0])
         # second option (a word)
         print('2 - ', split_line[1])
-        answer = int(input('what is your choice? '))
+
+        try:
+            answer = int(input('what is your choice? '))
+        except:
+            answer = 0  # each answer different from 1 or 2 will be counted as zero (not valid answer)
 
         # if the chosen word is the wrong one, the prize get halved
         if str(answer - 1) != options[count]:  # subtracting 1 because the shown options are 1 and 2 (not 0 and 1)
@@ -70,7 +83,7 @@ print()
 
 # 60 seconds Timer
 print('You have 60 seconds to think...')
-time.sleep(20)
+time.sleep(60)
 # requesting the user to write its guess
 guess = input('what is the word? ')
 
