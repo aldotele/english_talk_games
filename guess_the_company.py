@@ -1,0 +1,72 @@
+import os
+import base64
+ 
+
+players = int(input("How many players? "))
+players_list = []
+"""
+[
+    {letter: 'A', suggestion: 'dghfjdghsj', answer: 'dfhgf'}
+]
+
+{
+    'A': {suggestion: 'dghfjdghsj', answer: 'dfhgf'},
+    'B': {suggestion: 'dghfjdghsj', answer: 'dfhgf'},
+}
+
+1. user selects A -> list['A']
+2. user selects A -> ???
+3. user selects 7 -> ???
+
+
+"""
+
+for p in range(players):
+    player_name = input("What's your name? ")
+    players_list.append(player_name)
+
+
+inf = open(os.path.join('files', 'sample.txt'))
+
+d = dict()
+
+for line in inf:
+    line = line.strip().split(" | ") #0 -> letter, 1 -> suggestion , 2 -> answer
+    d[line[0]] = {
+        "suggestion": line[1],
+        "answer": line[2]
+    }
+    
+#print(d)
+
+j = 0
+for i in range(len(d)):
+    player = players_list[j]
+    letter = input('{}, please choose a letter: '.format(player))
+    while True:
+        if len(letter) == 1 and ('A' <= letter <= 'Z' or 'a' <= letter <= 'z'):
+            break
+        letter = input('not valid. Please write a letter: ')
+
+    letter = letter.upper()
+    j += 1
+    if j == players:
+        j = 0
+
+    print('{}'.format(d[letter]['suggestion']))
+    guess = input('enter your guess: ')
+    guess = guess.upper()
+    actual_choice = d[letter]['answer']
+
+    base64_bytes = actual_choice.encode('ascii')
+    company_bytes = base64.b64decode(base64_bytes)
+    company = company_bytes.decode('ascii')
+
+    if guess == company:
+        print('CORRECT!')
+    else:
+        print('wrong... the company is {}'.format(company))
+
+
+
+    
