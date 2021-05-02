@@ -4,22 +4,6 @@ import base64
 
 players = int(input("How many players? "))
 players_list = []
-"""
-[
-    {letter: 'A', suggestion: 'dghfjdghsj', answer: 'dfhgf'}
-]
-
-{
-    'A': {suggestion: 'dghfjdghsj', answer: 'dfhgf'},
-    'B': {suggestion: 'dghfjdghsj', answer: 'dfhgf'},
-}
-
-1. user selects A -> list['A']
-2. user selects A -> ???
-3. user selects 7 -> ???
-
-
-"""
 
 for p in range(players):
     player_name = input("What's your name? ")
@@ -31,7 +15,7 @@ inf = open(os.path.join('files', 'sample.txt'))
 d = dict()
 
 for line in inf:
-    line = line.strip().split(" | ") #0 -> letter, 1 -> suggestion , 2 -> answer
+    line = line.strip().split(" | ") # 0 -> letter, 1 -> suggestion , 2 -> answer
     d[line[0]] = {
         "suggestion": line[1],
         "answer": line[2]
