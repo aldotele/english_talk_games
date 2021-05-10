@@ -21,3 +21,7 @@ been assigned, if they do know it, or to pass it to the next player, if they don
 [ghigliottina](https://www.youtube.com/watch?v=pj1L_UhUCvo&ab_channel=Rai), 
 which is the final step of the Italian Quiz Show "L'Eredità". The purpose of
 the game is to find a word which ties 5 other words.
+
+- ***guess the word***: the purpose of this game is to guess a word based on a description.
+The words are related to specific themes, for example they might be companies or english professions,
+depending on which input file is chosen.
