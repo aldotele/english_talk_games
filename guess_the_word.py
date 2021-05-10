@@ -3,6 +3,13 @@ import base64
  
 
 input_file = input('write the input file to use: ')
+while True:
+    try:
+        inf = open(os.path.join('files', input_file))
+        break
+    except FileNotFoundError:
+        input_file = input('file not found, please rewrite: ')
+
 
 players = int(input("How many players? "))
 players_list = []
@@ -16,7 +23,6 @@ for p in range(players):
 
 print('\nstarting ...')
 
-inf = open(os.path.join('files', input_file))
 
 d = dict()
 
@@ -33,20 +39,25 @@ j = 0
 for i in range(len(d)):
     print()
     player = players_list[j]
-    letter = input('{}, please choose a letter: '.format(player))
+    letter = input('{}, please choose a letter: '.format(player)).upper()
     while True:
         if len(letter) == 1 and ('A' <= letter <= 'Z' or 'a' <= letter <= 'z'):
-            break
-        letter = input('not valid. Please rewrite: ')
+            try:
+                description = d[letter]['suggestion']       
+                break
+            except KeyError:
+                pass
 
-    letter = letter.upper()
+        letter = input('not valid. Please rewrite: ').upper()
+
     j += 1
     if j == players:
         j = 0
 
-    print('{} - {}'.format(letter, d[letter]['suggestion']))
+    print('{} - {}'.format(letter, description))
+
     guess = input('enter your guess: ')
-    guess = guess.upper()
+    guess = guess.upper().strip()
     actual_choice = d[letter]['answer']
 
     base64_bytes = actual_choice.encode('ascii')
