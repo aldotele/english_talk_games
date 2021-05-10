@@ -74,7 +74,7 @@ for i in range(rounds):
             scores[player] += 1
             print('[v] CORRECT!\n')
         else:
-            print('wrong... it was {}\n'.format(company))
+            print('wrong... it was {}\n'.format(actual_choice))
         del d[letter]
 
 # Finding the winner/s
