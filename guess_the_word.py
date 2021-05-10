@@ -57,7 +57,7 @@ for i in range(len(d)):
         scores[player] += 1
         print('CORRECT!')
     else:
-        print('wrong... the company is {}'.format(company))
+        print('wrong... it was {}'.format(company))
 
 sorted_players = sorted(scores, key=scores.get, reverse=True)
 winner_points = scores[sorted_players[0]] # return the winner player points
